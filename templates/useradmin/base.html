@@ -1,0 +1,73 @@
+{% load static %}
+{% include 'useradmin/layouts/header.html' %}
+
+
+            <!-- menu profile quick info -->
+          {% include 'useradmin/layouts/menu.html' %}
+            <!-- /menu profile quick info -->
+
+            <br />
+
+            <!-- sidebar menu -->
+           {% include 'useradmin/layouts/sidebar.html' %}
+            <!-- /sidebar menu -->
+
+            <!-- /menu footer buttons -->
+            <div class="sidebar-footer hidden-small">
+              
+            </div>
+            <!-- /menu footer buttons -->
+          </div>
+        </div>
+
+        <!-- top navigation -->
+       {% include 'useradmin/layouts/navbar.html' %}
+        <!-- /top navigation -->
+
+        <!-- page content -->
+        <div class="right_col" role="main">
+          <div class="">
+            <div class="page-title">
+              <div class="title_left">
+                <h3>{% block title1 %}Plain Page{% endblock title1 %}</h3>
+              </div>
+               <div class="title_right">
+               {% block add %}
+                    
+                {% endblock %}
+                </div>
+
+              <div class="title_right">
+                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                  <div class="input-group">
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="clearfix"></div>
+
+            <div class="row">
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2>{% block title2 %}Plain Page{% endblock title2 %}</h2>
+                    <div class="clearfix"></div>
+                       {% block message %}{% endblock %}
+                  </div>
+                  <div class="x_content">
+                   
+                      {% block content %}
+                             Add content to the page ...
+                      {% endblock %}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /page content -->
+
+        <!-- footer content -->
+     {% include 'useradmin/layouts/footer.html' %}

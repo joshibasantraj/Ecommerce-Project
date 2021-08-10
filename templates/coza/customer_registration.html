@@ -1,0 +1,23 @@
+{% include 'useradmin/layouts/header.html' %}
+
+<body style="background:white;">
+    <div class="container-fluid m-3">
+        <div class="row">
+            <div class="col-sm-8 mx-auto" style="padding-left: 25%;">
+			<h1 class="text-center" style="color: white;text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;">Registration Form</h1>
+                <form action="" method="post">
+                    {% csrf_token %}
+					 {% for field in form %} 
+					 	{{field.errors}}{{field.label_tag}}{{field}}
+					 {% endfor %}
+					<a href="{% url 'home' %}" class="btn btn-info mt-3" style="margin-top:30px;" >Back To Home</a>
+                    <input type="submit" class="btn btn-primary mt-3" style="margin-top:30px;" value="Create Account">
+
+                </form>
+					<span style="margin-top:30px;">login from <a href="{% url 'customer-login' %}{% if "next" in request.GET %}{{request.GET.next}}{% endif %}" style="color:blue;">here</a></span>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,46 @@
+{% extends 'useradmin/base.html' %}
+ {% block title1 %}Banner List Page{% endblock title1%}
+ {% block title2 %}All Banners{% endblock title2%}
+ {% block add %}
+<a href="{% url 'banner-create' %}" class="btn btn-success pull-right">
+    <i class="fas fa-plus"></i> Add Banner
+</a>
+{% endblock add %}
+{% block content %}
+<table class="table jambo_table">
+    <thead>
+        <th>Sno</th>
+        <th>Title</th>
+        <th>Image</th>
+        <th>Status</th>
+        <th>Action</th>
+    </thead>
+    <tbody>
+        {% for banner in banners %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{banner.title}}</td>
+            <td>
+                <img style="max-width: 150px;" src="{{banner.image.url}}" alt="" class="img img-responsive img-thumbnail">
+            </td>
+            <td>{{banner.status}}</td>
+            <td>
+                <a href="{% url 'banner-update' banner.id %}" class="btn btn-primary">Edit</a>
+                <form method="POST" action="{% url 'banner-delete' banner.id %}" onsubmit="return confirm('Are you sure you want to delete this banner?')">
+                {% csrf_token %}
+                <input type="submit" class="btn btn-danger" value="Delete">
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock content %}
+
+{% block message %}
+    {% if messages %}
+      {% for message in messages %}
+        <p class="alert alert-success">{{message}}</p>
+      {% endfor %}
+    {% endif %}
+{% endblock %}

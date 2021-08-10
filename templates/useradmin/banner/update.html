@@ -1,0 +1,19 @@
+{% extends 'useradmin/base.html' %}
+ {% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <form action="" method="PUT" class="form" enctype="multipart/form-data">
+                {% csrf_token %} {{form.as_p}}
+                <input type="submit" class="btn btn-success">
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block title1 %}
+Banner Update Page
+{% endblock %}
+{% block title2 %}
+Update Form
+{% endblock %}

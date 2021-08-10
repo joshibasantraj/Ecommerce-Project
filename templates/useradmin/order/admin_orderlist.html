@@ -1,0 +1,45 @@
+{% extends 'useradmin/base.html' %} {% block title1 %}Order List Page{% endblock title1%} {% block title2 %}All Orders{% endblock title2%} {% block add %} {% endblock add %} {% block content %}
+<table class="table jambo_table">
+    <thead>
+        <th>Sno</th>
+        <th>Ordered By</th>
+        <th>Shipping Address</th>
+        <th>Mobile</th>
+        <th>Email</th>
+        <th>Subtotal</th>
+        <th>Discount</th>
+        <th>Total</th>
+        <th>Order Status</th>
+        <th>Created At</th>
+        <th>Action</th>
+
+
+    </thead>
+    <tbody>
+        {% for order in orders %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{order.ordered_by.fullname}}</td>
+            <td>{{order.shipping_address}}</td>
+            <td>{{order.mobile}}</td>
+            <td>{{order.email}}</td>
+            <td>{{order.subtotal}}</td>
+            <td>{{order.discount}}</td>
+            <td>{{order.total}}</td>
+            <td>{{order.order_status}}</td>
+            <td>{{order.created_at|timesince}} ago</td>
+
+            <td>
+                <a href="{% url 'order-update' order.id %}" class="btn btn-primary">Edit</a>
+                <form method="POST" action="{% url 'order-delete' order.id %}" onsubmit="return confirm('Are you sure you want to delete this order?')">
+                    {% csrf_token %}
+                    <input type="submit" class="btn btn-danger" value="Delete">
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock content %} {% block message %} {% if messages %} {% for message in messages %}
+<p class="alert alert-success">{{message}}</p>
+{% endfor %} {% endif %} {% endblock %}

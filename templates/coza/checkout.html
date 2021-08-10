@@ -1,0 +1,31 @@
+{% extends 'coza/base.html' %}
+{% block content %}
+
+<div class="containe mt-5">
+		<div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
+			<a href="index.html" class="stext-109 cl8 hov-cl1 trans-04">
+				Home
+				<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
+			</a>
+
+			<span class="stext-109 cl4">
+				CheckOutForm
+			</span>
+		</div>
+	</div>
+
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 col-xl-6 col-sm-6 mx-auto m-b-50">
+                     <form method="POST" enctype="multipart/form-data" novalidate>
+                        {% csrf_token %} 
+						{% for field in form %}
+                        	{{field.errors}}{{field.label_tag}}{{field}}
+						{% endfor %}
+                        <input type="submit" class="btn btn-primary mt-2" value="Place Order">
+                    </form>
+				</div>
+			</div>
+		</div>
+
+{% endblock %}

@@ -1,0 +1,40 @@
+  {% load static %}
+   <footer>
+          <div class="pull-right">
+            Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
+          </div>
+          <div class="clearfix"></div>
+        </footer>
+        <!-- /footer content -->
+      </div>
+    </div>
+
+    
+
+
+
+
+    
+    <!-- jQuery -->
+    <script src="{% static 'admin/js/jquery.min.js' %}"></script>
+    <!-- Bootstrap -->
+    <script src="{% static 'admin/js/bootstrap.min.js' %}"></script>
+    <!-- FastClick -->
+    <script src="{% static 'admin/js/fastclick.js' %}"></script>
+    <!-- NProgress -->
+    <script src="{% static 'admin/js/nprogress.js' %}"></script>
+
+    <!-- Custom Theme Scripts -->
+    <script src="{% static 'admin/js/custom.js' %}"></script>
+
+    <script>
+    setTimeout(function(){
+        $('.alert').slideUp();
+    }, 3000);
+
+    setTimeout(function(){
+        $('.errorlist').slideUp();
+    }, 3000);
+</script>
+  </body>
+</html>

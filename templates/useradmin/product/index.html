@@ -1,0 +1,56 @@
+{% extends 'useradmin/base.html' %}
+ {% block title1 %}Product List Page{% endblock title1%}
+ {% block title2 %}All Products{% endblock title2%}
+ {% block add %}
+<a href="{% url 'product-create' %}" class="btn btn-success pull-right">
+    <i class="fas fa-plus"></i> Add Product
+</a>
+{% endblock add %}
+{% block content %}
+<table class="table jambo_table">
+    <thead>
+        <th>Sno</th>
+        <th>Title</th>
+        <th>Slug</th>
+        <th>Image</th>
+        <th>Category</th>
+        <th>Status</th>
+        <th>Marked Price</th>
+        <th>Selling Price</th>
+        <th>Action</th>
+    </thead>
+    <tbody>
+    {% if product_list %}
+        {% for product in product_list %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{product.title}}</td>
+            <td>{{product.slug}}</td>
+            <td>
+                <img style="max-width: 150px;" src="{{product.image.url}}" alt="" class="img img-responsive img-thumbnail">
+            </td>
+            <td>{{product.category}}</td>
+            <td>{{product.status|title}}</td>
+            <td>{{product.marked_price}}</td>
+            <td>{{product.selling_price}}</td>
+            <td>
+                <a href="{% url 'product-update' product.id %}" class="btn btn-primary">Edit</a>
+                <form method="POST" action="{% url 'product-delete' product.id %}" onsubmit="return confirm('Are you sure you want to delete this Product?')">
+                {% csrf_token %}
+                <input type="submit" class="btn btn-danger" value="Delete">
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    {% endif %}
+    </tbody>
+</table>
+{% endblock content %}
+
+{% block message %}
+    {% if messages %}
+      {% for message in messages %}
+        <p class="alert alert-success">{{message}}</p>
+      {% endfor %}
+    {% endif %}
+{% endblock %}
